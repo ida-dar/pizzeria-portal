@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 //import PropTypes from 'prop-types';
-import styles from './Order.scss';
+import styles from './Order.module.scss';
 
 const Order = () => {
 

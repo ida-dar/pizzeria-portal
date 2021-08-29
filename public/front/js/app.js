@@ -1,9 +1,9 @@
-import {settings, select, classNames} from './settings.js'; // {} are used when we import more than one thing and it's NOT default
-import Product from './components/Product.js'; // in Product.js we exported class Product as default, so it can be imported here without {}
-import Cart from './components/Cart.js';
-import Booking from './components/Booking.js';
-//import Carousel from './components/Carousel.js';
-import HomePage from './components/HomePage.js';
+import {settings, select, classNames} from '../settings.js'; // {} are used when we import more than one thing and it's NOT default
+import Product from '../components/Product.js'; // in Product.js we exported class Product as default, so it can be imported here without {}
+import Cart from '../components/Cart.js';
+import Booking from '../components/Booking.js';
+//import Carousel from '../components/Carousel.js';
+import HomePage from '../components/HomePage.js';
 
 const app = {
   initPages: function(){

@@ -1,6 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
-import { Switch } from 'react-router';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import MainLayout from './components/layout/MainLayout/MainLayout';
 import Homepage from './components/views/Homepage/Homepage';
@@ -19,30 +18,90 @@ import NewOrder from './components/views/NewOrder/NewOrder';
 import Order from './components/views/Order/Order';
 import Kitchen from './components/views/Kitchen/Kitchen';
 
+import { StylesProvider } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#2B4C6F',
+    },
+    // secondary: {
+    //   main: '#11cb5f',
+    // },
+  },
+});
+
+export const routes = [
+  {
+    path: '/',
+    component: Homepage,
+  },
+  {
+    path: '/login',
+    component: Login,
+  },
+  {
+    path: '/tables',
+    component: Tables,
+  },
+  {
+    path: '/tables/booking',
+    component: Booking,
+  },
+  {
+    path: '/tables/booking:id',
+    component: SingleBooking,
+  },
+  {
+    path: '/tables/booking/new',
+    component: NewBooking,
+  },
+  {
+    path: '/tables/events',
+    component: Events,
+  },
+  {
+    path: '/tables/events/:id',
+    component: SingleEvent,
+  },
+  {
+    path: '/tables/events/new',
+    component: NewEvent,
+  },
+  {
+    path: '/waiter',
+    component: Waiter,
+  },
+  {
+    path: '/waiter/order/:id',
+    component: Order,
+  },
+  {
+    path: '/tables/order/new',
+    component: NewOrder,
+  },
+  {
+    path: '/kitchen',
+    component: Kitchen,
+  },
+];
+
 function App() {
   return (
-    <BrowserRouter basename={'/panel'}>
-      <MainLayout>
-        <Switch>
-          <Route exact path={`${process.env.PUBLIC_URL}/`} component={Homepage} />
-
-          <Route exact path={process.env.PUBLIC_URL + '/login'} component={Login} />
-
-          <Route exact path={process.env.PUBLIC_URL + '/tables'} component={Tables} />
-          <Route exact path={process.env.PUBLIC_URL + '/tables/booking'} component={Booking} />
-          <Route exact path={process.env.PUBLIC_URL + '/tables/booking/:id'} component={SingleBooking} />
-          <Route exact path={process.env.PUBLIC_URL + '/tables/booking/new'} component={NewBooking} />
-          <Route exact path={process.env.PUBLIC_URL + '/tables/events'} component={Events} />
-          <Route exact path={process.env.PUBLIC_URL + '/tables/events/:id'} component={SingleEvent} />
-          <Route exact path={process.env.PUBLIC_URL + '/tables/events/new'} component={NewEvent} />
-
-          <Route exact path={process.env.PUBLIC_URL + '/waiter'} component={Waiter} />
-          <Route exact path={process.env.PUBLIC_URL + '/waiter/order/:id'} component={Order} />
-          <Route exact path={process.env.PUBLIC_URL + '/waiter/order/new'} component={NewOrder} />
-
-          <Route exact path={process.env.PUBLIC_URL + '/kitchen'} component={Kitchen} />
-        </Switch>
-      </MainLayout>
+    <BrowserRouter>
+      <StylesProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <MainLayout>
+            <Switch>
+              {routes.map(route => (
+                <Route key={route.path} exact path={`${process.env.PUBLIC_URL}${route.path}`} component={route.component} />
+              ))}
+            </Switch>
+          </MainLayout>
+        </ThemeProvider>
+      </StylesProvider>
     </BrowserRouter>
   );
 }

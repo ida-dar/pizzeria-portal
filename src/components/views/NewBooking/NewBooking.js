@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 //import PropTypes from 'prop-types';
-import styles from './NewBooking.scss';
+import styles from './NewBooking.module.scss';
 
 const NewBooking = () => {
   return(

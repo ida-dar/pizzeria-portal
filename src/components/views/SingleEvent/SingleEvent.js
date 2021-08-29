@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 //import PropTypes from 'prop-types';
-import styles from './SingleEvent.scss';
+import styles from './SingleEvent.module.scss';
 
 const SingleEvent = () => {
 

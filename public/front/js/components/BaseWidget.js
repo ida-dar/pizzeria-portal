@@ -46,7 +46,7 @@ class BaseWidget{
 
     //const event = new Event('updated');  // had to be modified to update total price after changing products number in cart
     const event = new CustomEvent('updated', {
-      bubbles: true  // makes event bubble up through DOM (work on the item, its parent ... up to <body>, document, window). In custom event the bubbling needs to be turned on.
+      bubbles: true,  // makes event bubble up through DOM (work on the item, its parent ... up to <body>, document, window). In custom event the bubbling needs to be turned on.
     });
     thisWidget.dom.wrapper.dispatchEvent(event);
   }
