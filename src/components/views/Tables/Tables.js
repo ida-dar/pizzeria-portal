@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 //import PropTypes from 'prop-types';
 import styles from './Tables.module.scss';
 
+import Typography from '@material-ui/core/Typography';
 import { Paper,  Button, Grid, Table, TableHead, TableCell, TableBody, TableRow } from '@material-ui/core';
 import DateFnsUtils from '@date-io/date-fns';
 import {
@@ -10,6 +11,28 @@ import {
   KeyboardTimePicker,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
+
+const renderTables = item => {
+  if(item === 'FREE'){
+    return(
+      <Button component={Link} to={`${process.env.PUBLIC_URL}/tables/booking/new`} color="primary" size="small">
+        NEW BOOKING
+      </Button>
+    );
+  } else if(item === 'EVENT'){
+    return(
+      <Button component={Link} to={`${process.env.PUBLIC_URL}/tables/event/new`} variant="outlined" color="secondary" size="small">
+        EVENT
+      </Button>
+    );
+  } else {
+    return(
+      <Button component={Link} to={`${process.env.PUBLIC_URL}/tables/booking/${item}`} variant="outlined" color="primary" size="small">
+        {item}
+      </Button>
+    );
+  }
+};
 
 const Tables = () => {
 
@@ -22,130 +45,22 @@ const Tables = () => {
   const tableNumbers = [1, 2, 3, 4];
 
   // eslint-disable-next-line no-unused-vars
-  const demoContent = {
-
-    reservations: [
-      {
-        id: 1,
-        date: '2021-05-20',
-        hour: '16:00',
-        table: 1,
-        duration: 3,
-        ppl: 4,
-        starters: [
-          'water',
-        ],
-      },
-      {
-        date: '2021-07-26',
-        hour: '12:00',
-        duration: 1,
-        ppl: 1,
-        starters: [],
-        phone: '',
-        address: '',
-        id: 2,
-      },
-      {
-        date: '2021-07-26',
-        hour: '12:00',
-        duration: 1,
-        ppl: 1,
-        starters: [],
-        phone: '',
-        address: '',
-        id: 3,
-      },
-      {
-        date: '2021-07-26',
-        hour: '12:00',
-        duration: 1,
-        ppl: 1,
-        starters: [],
-        phone: '',
-        address: '',
-        id: 4,
-      },
-    ],
-    events: [
-      {
-        id: 1,
-        date: '2021-05-20',
-        hour: '12:30',
-        table: 1,
-        repeat: false,
-        duration: 4,
-        ppl: 3,
-        starters: [],
-      },
-      {
-        id: 2,
-        date: '2021-05-19',
-        hour: '16:00',
-        table: 3,
-        repeat: 'daily',
-        duration: 2,
-        ppl: 3,
-        starters: [
-          'bread',
-          'lemonWater',
-        ],
-      },
-      {
-        id: 3,
-        date: '2021-05-19',
-        hour: '12:00',
-        table: 3,
-        repeat: 'daily',
-        duration: 2,
-        ppl: 3,
-        starters: [
-          'bread',
-          'lemonWater',
-        ],
-      },
-      {
-        id: 4,
-        date: '2021-05-19',
-        hour: '13:00',
-        table: 2,
-        repeat: 'daily',
-        duration: 4,
-        ppl: 3,
-        starters: [],
-      },
-      {
-        id: 5,
-        date: '2021-05-19',
-        hour: '18:00',
-        table: 2,
-        repeat: 'daily',
-        duration: 2,
-        ppl: 3,
-        starters: [
-          'lemonWater',
-        ],
-      },
-    ],
-  };
+  const demoContent = [
+    {hour: '12:00', table1: 1, table2: 3, table3: 'FREE', table4: 'FREE'},
+    {hour: '12:30', table1: 3, table2: 'FREE', table3: 'EVENT', table4: 'FREE'},
+    {hour: '13:00', table1: 'EVENT', table2: 2, table3: 2, table4: 3},
+    {hour: '13:30', table1: 'FREE', table2: 1, table3: 'FREE', table4: 'EVENT'},
+    {hour: '14:00', table1: 3, table2: 'FREE', table3: 2, table4: 'FREE'},
+    {hour: '14:30', table1: 2, table2: 3, table3: 'FREE', table4: 4},
+    {hour: '15:00', table1: 'FREE', table2: 4, table3: 3, table4: 'FREE'},
+    {hour: '15:30', table1: 4, table2: 3, table3: 'EVENT', table4: 1},
+  ];
 
   return(
     <div className={styles.component}>
-      <h2>Tables</h2>
-      <Grid
-        container
-        spacing={1}
-        direction="row"
-        alignItems="center"
-        justifyContent="space-around"
-      >
-        <Grid item>
-          <Button component={Link} to={`${process.env.PUBLIC_URL}/tables/booking`} variant="contained" color="primary" size="large">Booking</Button>
-        </Grid>
-        <Grid item>
-          <Button component={Link} to={`${process.env.PUBLIC_URL}/tables/events`} variant="contained" color="primary" size="large">Events</Button>
-        </Grid>
-      </Grid>
+      <Typography variant="h4">
+        Tables
+      </Typography>
       <Grid className={styles.component}>
         <Paper>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -178,13 +93,30 @@ const Tables = () => {
           <Table>
             <TableHead>
               <TableRow>
+                <TableCell>Hour</TableCell>
                 {tableNumbers.map((table, index) => (
-                  <TableCell key={index}>Table No. {table}</TableCell>
+                  <TableCell key={index}>Table {table} (No. of ppl)</TableCell>
                 ))}
               </TableRow>
             </TableHead>
             <TableBody>
-              
+              {demoContent.map((item, index) => (
+                <TableRow key={index}>
+                  <TableCell>{item.hour}</TableCell>
+                  <TableCell>
+                    {renderTables(item.table1)}
+                  </TableCell>
+                  <TableCell>
+                    {renderTables(item.table2)}
+                  </TableCell>
+                  <TableCell>
+                    {renderTables(item.table3)}
+                  </TableCell>
+                  <TableCell>
+                    {renderTables(item.table4)}
+                  </TableCell>
+                </TableRow>
+              ))}
             </TableBody>
           </Table>
         </Paper>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 //import PropTypes from 'prop-types';
 import styles from './SingleBooking.module.scss';
+import Typography from '@material-ui/core/Typography';
 
 const SingleBooking = () => {
 
@@ -10,7 +11,9 @@ const SingleBooking = () => {
   return(
     <div className={styles.component}>
       <Link to={`${process.env.PUBLIC_URL}/tables/booking`}>Booking</Link>
-      <h2>Booking No. {id}</h2>
+      <Typography variant="h4">
+        Booking No. {id}
+      </Typography>
     </div>
   );
 };

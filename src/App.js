@@ -51,7 +51,7 @@ export const routes = [
     component: Booking,
   },
   {
-    path: '/tables/booking:id',
+    path: '/tables/booking/:id',
     component: SingleBooking,
   },
   {
