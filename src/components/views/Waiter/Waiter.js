@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './Waiter.module.scss';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -7,6 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 
 const demoContent = [
   {id: '1', status: 'free', order: null},
@@ -53,6 +55,17 @@ const renderActions = status => {
 
 const Waiter = () => (
   <Paper className={styles.component}>
+    <Grid
+      container
+      spacing={1}
+      direction="row"
+      alignItems="center"
+      justifyContent="space-around"
+    >
+      <Grid item>
+        <Button component={Link} to={`${process.env.PUBLIC_URL}/waiter/orders/new`} variant="contained" color="primary" size="large">New order</Button>
+      </Grid>
+    </Grid>
     <Table>
       <TableHead>
         <TableRow>
@@ -73,7 +86,7 @@ const Waiter = () => (
             </TableCell>
             <TableCell>
               {row.order && (
-                <Button to={`${process.env.PUBLIC_URL}/waiter/order/${row.order}`}>
+                <Button component={Link} to={`${process.env.PUBLIC_URL}/waiter/order/${row.order}`}>
                   {row.order}
                 </Button>
               )}

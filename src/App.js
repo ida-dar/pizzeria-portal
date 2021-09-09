@@ -6,10 +6,8 @@ import Homepage from './components/views/Homepage/Homepage';
 import Login from './components/views/Login/Login';
 
 import Tables from './components/views/Tables/Tables';
-import Booking from './components/views/Booking/Booking';
 import SingleBooking from './components/views/SingleBooking/SingleBooking';
 import NewBooking from './components/views/NewBooking/NewBooking';
-import Events from './components/views/Events/Events';
 import SingleEvent from './components/views/SingleEvent/SingleEvent';
 import NewEvent from './components/views/NewEvent/NewEvent';
 
@@ -47,20 +45,12 @@ export const routes = [
     component: Tables,
   },
   {
-    path: '/tables/booking',
-    component: Booking,
-  },
-  {
     path: '/tables/booking/:id',
     component: SingleBooking,
   },
   {
     path: '/tables/bookings/new',
     component: NewBooking,
-  },
-  {
-    path: '/tables/events',
-    component: Events,
   },
   {
     path: '/tables/event/:id',
@@ -79,7 +69,7 @@ export const routes = [
     component: Order,
   },
   {
-    path: '/tables/order/new',
+    path: '/waiter/orders/new',
     component: NewOrder,
   },
   {

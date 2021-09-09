@@ -2,4 +2,9 @@
 
 .component {
   padding: $base-size;
+
+  .formControl {
+    margin: 10px;
+    width: 75px;
+  }
 }
