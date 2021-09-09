@@ -55,7 +55,7 @@ export const routes = [
     component: SingleBooking,
   },
   {
-    path: '/tables/booking/new',
+    path: '/tables/bookings/new',
     component: NewBooking,
   },
   {
@@ -63,7 +63,7 @@ export const routes = [
     component: Events,
   },
   {
-    path: '/tables/events/:id',
+    path: '/tables/event/:id',
     component: SingleEvent,
   },
   {

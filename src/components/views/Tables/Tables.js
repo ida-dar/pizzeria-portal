@@ -15,13 +15,13 @@ import {
 const renderTables = item => {
   if(item === 'FREE'){
     return(
-      <Button component={Link} to={`${process.env.PUBLIC_URL}/tables/booking/new`} color="primary" size="small">
+      <Button component={Link} to={`${process.env.PUBLIC_URL}/tables/bookings/new`} color="primary" size="small">
         NEW BOOKING
       </Button>
     );
   } else if(item === 'EVENT'){
     return(
-      <Button component={Link} to={`${process.env.PUBLIC_URL}/tables/event/new`} variant="outlined" color="secondary" size="small">
+      <Button component={Link} to={`${process.env.PUBLIC_URL}/tables/event/${item}`} variant="outlined" color="secondary" size="small">
         EVENT
       </Button>
     );
@@ -61,6 +61,20 @@ const Tables = () => {
       <Typography variant="h4">
         Tables
       </Typography>
+      <Grid
+        container
+        spacing={1}
+        direction="row"
+        alignItems="center"
+        justifyContent="space-around"
+      >
+        <Grid item>
+          <Button component={Link} to={`${process.env.PUBLIC_URL}/tables/bookings/new`} variant="contained" color="primary" size="large">Add new booking</Button>
+        </Grid>
+        <Grid item>
+          <Button component={Link} to={`${process.env.PUBLIC_URL}/tables/events/new`} variant="contained" color="primary" size="large">Add new event</Button>
+        </Grid>
+      </Grid>
       <Grid className={styles.component}>
         <Paper>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
