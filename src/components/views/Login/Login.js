@@ -13,6 +13,7 @@ import Paper from '@material-ui/core/Paper';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
 
 const Login = () => {
 
@@ -38,7 +39,9 @@ const Login = () => {
 
   return(
     <Paper className={styles.component}>
-      <h2>Login</h2>
+      <Typography variant="h4">
+        Login
+      </Typography>
       <form noValidate>
         <Grid
           container
