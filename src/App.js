@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 import MainLayout from './components/layout/MainLayout/MainLayout';
 import Homepage from './components/views/Homepage/Homepage';
@@ -11,7 +13,7 @@ import NewBooking from './components/views/NewBooking/NewBooking';
 import SingleEvent from './components/views/SingleEvent/SingleEvent';
 import NewEvent from './components/views/NewEvent/NewEvent';
 
-import Waiter from './components/views/Waiter/Waiter';
+import Waiter from './components/views/Waiter/WaiterContainer';
 import NewOrder from './components/views/NewOrder/NewOrder';
 import Order from './components/views/Order/Order';
 import Kitchen from './components/views/Kitchen/Kitchen';
@@ -80,19 +82,21 @@ export const routes = [
 
 function App() {
   return (
-    <BrowserRouter>
-      <StylesProvider injectFirst>
-        <ThemeProvider theme={theme}>
-          <MainLayout>
-            <Switch>
-              {routes.map(route => (
-                <Route key={route.path} exact path={`${process.env.PUBLIC_URL}${route.path}`} component={route.component} />
-              ))}
-            </Switch>
-          </MainLayout>
-        </ThemeProvider>
-      </StylesProvider>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <StylesProvider injectFirst>
+          <ThemeProvider theme={theme}>
+            <MainLayout>
+              <Switch>
+                {routes.map(route => (
+                  <Route key={route.path} exact path={`${process.env.PUBLIC_URL}${route.path}`} component={route.component} />
+                ))}
+              </Switch>
+            </MainLayout>
+          </ThemeProvider>
+        </StylesProvider>
+      </BrowserRouter>
+    </Provider>
   );
 }
 
