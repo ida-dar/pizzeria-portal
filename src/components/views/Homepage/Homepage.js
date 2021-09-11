@@ -79,7 +79,7 @@ const Homepage = () => {
       <Paper>
         <List>
           <Typography variant="h6">
-          Statistics:
+            Statistics:
           </Typography>
           <ListItem >
             {statistics.map(item => (
